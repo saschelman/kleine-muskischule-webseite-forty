@@ -7,6 +7,42 @@
 <html>
   <head>
     <title>Unsere Lehrweise - Kleine Musikschule Karlsruhe</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.kleine-muskischule.de/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Lehre",
+            "item": "https://www.kleine-muskischule.de/lehre.html"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Kleine Musikschule Karlsruhe",
+        "url": "https://www.kleine-muskischule.de/",
+        "logo": "https://www.kleine-muskischule.de/images/logo_small.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+49-15208905901",
+          "contactType": "customer service",
+          "email": "alex@kleine-musiskschule.de"
+        }
+      }
+    </script>
+    <link rel="icon" href="images/logo_small.png" />
     <meta charset="utf-8" />
     <meta
       name="keywords"
@@ -50,7 +86,12 @@
       <!-- Note: The "styleN" class below should match that of the banner element. -->
       <header id="header" class="alt style2">
         <a href="index.html" class="logo"
-          ><img src="images/logo_small.png" alt="Logo" class="logo-img" />
+          ><img
+            src="images/logo_small.png"
+            alt="Logo"
+            class="logo-img"
+            loading="lazy"
+          />
           <strong>kleine</strong> <span>musikschule Karlsruhe</span></a
         >
         <nav>
@@ -60,7 +101,7 @@
 
       <!-- Menu -->
       <nav id="menu">
-        <ul class="links">
+        <ul class="links" role="menubar" aria-label="Seitennavigation">
           <li><a href="index.html">Home</a></li>
           <li><a href="überuns.html">Über uns</a></li>
           <li><a href="instrumente.html">Instrumente</a></li>
@@ -75,7 +116,7 @@
       <section id="banner" class="style6">
         <div class="inner">
           <span class="image">
-            <img src="images/lehre.jpg" alt="Lehre" />
+            <img src="images/lehre.jpg" alt="Lehre" loading="lazy" />
           </span>
           <header class="major">
             <h1>Unsere Lehrweise</h1>
@@ -147,6 +188,7 @@
                 src="images/lehre.jpg"
                 alt="Musikunterricht für alle"
                 data-position="top center"
+                loading="lazy"
               />
             </div>
             <div class="content">

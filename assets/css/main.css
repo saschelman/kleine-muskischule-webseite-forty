@@ -1,5 +1,21 @@
+/* Breadcrumbs */
+.breadcrumbs {
+  font-size: 1em;
+  margin: 1em 0 2em 0;
+  padding-left: 1em;
+  color: #888;
+}
+.breadcrumbs a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+.breadcrumbs span {
+  color: #333;
+  font-weight: 600;
+}
 @import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
 
 /*
 	Forty by HTML5 UP
@@ -211,7 +227,7 @@ input,
 select,
 textarea {
   color: #ffffff;
-  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-family: "Nunito", "Segoe UI", Arial, sans-serif;
   font-size: 17pt;
   font-weight: 300;
   letter-spacing: 0.025em;
@@ -2320,6 +2336,19 @@ a.icon.alt:active:before {
 
 .image img {
   display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: #fff;
+  transition: box-shadow 0.2s;
+}
+
+.image img:focus {
+  outline: 2px solid #9bf1ff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(155, 241, 255, 0.2);
 }
 
 .image.left,
@@ -3065,7 +3094,11 @@ button:disabled,
 }
 
 .tiles article h3 {
-  font-size: 1.75em;
+  font-size: 2.5em;
+}
+
+.tiles article p {
+  font-size: 1em;
 }
 
 .tiles article h3 a:hover {
@@ -3453,6 +3486,7 @@ button:disabled,
 #header .logo .logo-img {
   height: 3em;
   width: auto;
+  max-width: 100%;
   vertical-align: middle;
   margin-right: 0.2em;
   display: inline-block;
@@ -3461,6 +3495,15 @@ button:disabled,
   -ms-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
   opacity: 1;
+  background: none;
+  border-radius: 0;
+  outline: none;
+  #header .logo img:focus,
+  #header .logo .logo-img:focus {
+    outline: 2px solid #9bf1ff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(155, 241, 255, 0.2);
+  }
 }
 
 #header .logo:hover img,

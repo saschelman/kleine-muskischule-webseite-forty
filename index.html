@@ -9,6 +9,36 @@
     <title>
       Mobile Musikschule Karlsruhe | Musikunterricht für Gitarre, Klavier & mehr
     </title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.kleine-muskischule.de/index.html"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Kleine Musikschule Karlsruhe",
+        "url": "https://www.kleine-muskischule.de/",
+        "logo": "https://www.kleine-muskischule.de/images/logo_small.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+49-15208905901",
+          "contactType": "customer service",
+          "email": "alex@kleine-musiskschule.de"
+        }
+      }
+    </script>
+    <link rel="icon" href="images/logo_small.png" />
     <meta
       name="description"
       content="Die kleine Musikschule Karlsruhe bietet professionellen Musikunterricht für Gitarre, Klavier, Schlagzeug, Ukulele und E-Bass. Für Kinder, Jugendliche und Erwachsene. Jetzt kostenlose Probestunde sichern!"
@@ -48,7 +78,12 @@
       <!-- Header -->
       <header id="header" class="alt">
         <a href="index.html" class="logo"
-          ><img src="images/logo_small.png" alt="Logo" class="logo-img" />
+          ><img
+            src="images/logo_small.png"
+            alt="Logo der kleinen Musikschule Karlsruhe"
+            class="logo-img"
+            loading="lazy"
+          />
           <strong>kleine</strong> <span>musikschule Karlsruhe</span></a
         >
         <nav>
@@ -56,9 +91,14 @@
         </nav>
       </header>
 
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs">
+        <a href="index.html">Home</a>
+      </nav>
+
       <!-- Menu -->
       <nav id="menu">
-        <ul class="links">
+        <ul class="links" role="menubar" aria-label="Seitennavigation">
           <li><a href="überuns.html">Über uns</a></li>
           <li><a href="lehre.html">Lehre</a></li>
           <li><a href="instrumente.html">Instrumente</a></li>
@@ -77,12 +117,14 @@
           </header>
           <div class="content">
             <p>
-              Unbeschwertes und unkompliziertes Lernen,<br />
-              das Spaß macht!
+              Musikunterricht, der Spaß macht: Persönlich, flexibel und
+              individuell für jedes Alter.<br />
+              Lerne Gitarre, Klavier, Schlagzeug, Ukulele oder E-Bass in
+              Karlsruhe – mit Freude und Erfolg!
             </p>
             <ul class="actions">
               <li>
-                <a href="#one" class="button next scrolly">Get Started</a>
+                <a href="#one" class="button next scrolly">Los gehts!</a>
               </li>
             </ul>
           </div>
@@ -95,7 +137,7 @@
         <section id="one" class="tiles">
           <article>
             <video class="tile-video" muted loop playsinline>
-              <source src="vids/überuns.mp4" type="video/mp4" />
+              <source src="vids/überuns.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3>
@@ -106,7 +148,7 @@
           </article>
           <article>
             <video class="tile-video" muted loop playsinline>
-              <source src="vids/lehre.mp4" type="video/mp4" />
+              <source src="vids/lehre.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3><a href="lehre.html" class="link">Lehre</a></h3>
@@ -115,7 +157,11 @@
           </article>
           <article>
             <video class="tile-video" muted loop playsinline>
-              <source src="vids/instrummente.mp4" type="video/mp4" />
+              <source
+                src="vids/instrummente.mp4"
+                type="video/mp4"
+                loading="lazy"
+              />
             </video>
             <header class="major">
               <h3>
@@ -126,7 +172,7 @@
           </article>
           <article>
             <video class="tile-video" muted loop playsinline>
-              <source src="vids/prices.mp4" type="video/mp4" />
+              <source src="vids/prices.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3><a href="preise.html" class="link">Preise</a></h3>
@@ -135,7 +181,7 @@
           </article>
           <article>
             <video class="tile-video" muted loop playsinline>
-              <source src="vids/faq.mp4" type="video/mp4" />
+              <source src="vids/faq.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3><a href="faq.html" class="link">FAQ</a></h3>
@@ -144,7 +190,7 @@
           </article>
           <article>
             <video class="tile-video" muted loop playsinline>
-              <source src="vids/kontakt.mp4" type="video/mp4" />
+              <source src="vids/kontakt.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3>
