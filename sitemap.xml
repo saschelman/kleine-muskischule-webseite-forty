@@ -33,18 +33,15 @@
   <url>
     <loc>https://www.kleine-muskischule.de/preise.html</loc>
   </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/überuns.html</loc>
-  </url>
-  <!-- Add blog and instrument subpages -->
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/10-tipps-zum-dranbleiben.html</loc>
   </url>
   <url>
     <loc>https://www.kleine-muskischule.de/blog/e-drums-vs-akustik.html</loc>
   </url>
   <url>
     <loc>https://www.kleine-muskischule.de/blog/erste-akkorde-gitarre.html</loc>
+    <url>
+      <loc>https://www.kleine-muskischule.de/%C3%BCberuns.html</loc>
+    </url>
   </url>
   <url>
     <loc>https://www.kleine-muskischule.de/blog/musik-im-alter-lernen.html</loc>
@@ -63,9 +60,6 @@
   </url>
   <url>
     <loc>https://www.kleine-muskischule.de/instrumente/klavier/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/instrumente/schlagzeug/index.html</loc>
   </url>
   <url>
     <loc>https://www.kleine-muskischule.de/instrumente/ukulele/index.html</loc>
