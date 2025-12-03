@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FAQ – Häufige Fragen | Kleine Musikschule Karlsruhe</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Antworten auf häufige Fragen zur kleinen Musikschule Karlsruhe: Probestunde, Instrumente, Unterricht zuhause, Preise, 10er‑Karte und mehr."
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header" class="alt style2">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="Logo" class="logo-img" />
+          <strong>kleine</strong> <span>musikschule Karlsruhe</span>
+        </a>
+        <nav><a href="#menu">Menu</a></nav>
+      </header>
+
+      <!-- Menu -->
+      <nav id="menu">
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="überuns.html">Über uns</a></li>
+          <li><a href="lehre.html">Lehre</a></li>
+          <li><a href="instrumente.html">Instrumente</a></li>
+          <li><a href="preise.html">Preise</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <!-- Banner -->
+      <section id="banner" class="style2">
+        <div class="inner">
+          <span class="image">
+            <img src="images/faq.jpg" alt="FAQ" />
+          </span>
+          <header class="major">
+            <h1>Häufige Fragen (FAQ)</h1>
+          </header>
+          <div class="content">
+            <p>Antworten auf deine wichtigsten Fragen</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main -->
+      <div id="main">
+        <section id="one">
+          <div class="inner">
+            <p>
+              Hier findest du kurze Antworten auf die wichtigsten Fragen rund um
+              unseren Musikunterricht in Karlsruhe. Wenn etwas fehlt, schreib
+              uns einfach im <a href="kontakt.html">Kontakt</a>-Bereich.
+            </p>
+
+            <style>
+              .faq-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+              }
+              .faq-card {
+                border-radius: 16px;
+                color: #fff;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+              }
+              .faq-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+              }
+              .faq-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.5);
+              }
+              .faq-card::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                  135deg,
+                  rgba(255, 255, 255, 0.1) 0%,
+                  rgba(255, 255, 255, 0.05) 50%,
+                  rgba(0, 0, 0, 0.1) 100%
+                );
+                pointer-events: none;
+              }
+              .faq-card details {
+                padding: 1.5rem 1.5rem 1.3rem;
+                backdrop-filter: saturate(130%);
+                position: relative;
+                z-index: 1;
+              }
+              .faq-card summary {
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 1.08rem;
+                letter-spacing: 0.01em;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                line-height: 1.4;
+                transition: all 0.2s ease;
+              }
+              .faq-card summary::-webkit-details-marker {
+                display: none;
+              }
+              .faq-card summary:hover {
+                transform: translateX(4px);
+              }
+              .faq-card summary::before {
+                content: "+";
+                display: inline-flex;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                align-items: center;
+                justify-content: center;
+                font-weight: 900;
+                font-size: 1.3rem;
+                background: rgba(255, 255, 255, 0.25);
+                color: #fff;
+                flex-shrink: 0;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+              }
+              .faq-card details[open] summary::before {
+                content: "–";
+                transform: rotate(90deg);
+                background: rgba(255, 255, 255, 0.35);
+              }
+              .faq-card .faq-content {
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                transition: max-height 0.4s ease, opacity 0.3s ease,
+                  transform 0.3s ease;
+                transform: translateY(-10px);
+              }
+              .faq-card details[open] .faq-content {
+                max-height: 500px;
+                opacity: 1;
+                transform: translateY(0);
+              }
+              .faq-card p {
+                margin-top: 1rem;
+                padding-left: 0.5rem;
+                color: rgba(255, 255, 255, 0.96);
+                line-height: 1.6;
+                font-size: 0.95rem;
+              }
+              .faq-card a {
+                color: #fff;
+                text-decoration-color: rgba(255, 255, 255, 0.5);
+                font-weight: 600;
+              }
+              .faq-card a:hover {
+                text-decoration-color: #fff;
+              }
+
+              /* Enhanced color palette */
+              .faq-card--blue {
+                background: linear-gradient(135deg, #76c2df 0%, #4fa8ca 100%);
+              }
+              .faq-card--purple {
+                background: linear-gradient(135deg, #8878d3 0%, #6a59b3 100%);
+              }
+              .faq-card--salmon {
+                background: linear-gradient(135deg, #f0a39c 0%, #de7f76 100%);
+              }
+              .faq-card--sand {
+                background: linear-gradient(135deg, #e5c29a 0%, #cf9e6e 100%);
+              }
+              .faq-card--green {
+                background: linear-gradient(135deg, #85ceb0 0%, #58ac8b 100%);
+              }
+              .faq-card--indigo {
+                background: linear-gradient(135deg, #8faee5 0%, #6e8ecc 100%);
+              }
+            </style>
+
+            <section class="faq-grid">
+              <div class="faq-card faq-card--blue">
+                <details>
+                  <summary>Bietet ihr eine kostenlose Probestunde an?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Ja. Melde dich kurz über
+                      <a href="kontakt.html">Kontakt</a> – wir stimmen einen
+                      Termin für eine kostenlose Probestunde ab.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--purple">
+                <details>
+                  <summary>Welche Instrumente kann ich lernen?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Wir unterrichten <strong>Gitarre</strong> (Akustik &
+                      E‑Gitarre), <strong>Klavier/Keyboard</strong>,
+                      <strong>Ukulele</strong> und <strong>E‑Bass</strong>. Mehr
+                      Infos im Bereich
+                      <a href="instrumente.html">Instrumente</a>.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--salmon">
+                <details>
+                  <summary>Kommt ihr auch für Unterricht nach Hause?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Ja – wir sind eine <strong>mobile Musikschule</strong>.
+                      Unterricht ist wahlweise bei dir zuhause oder in unseren
+                      Locations möglich.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--sand">
+                <details>
+                  <summary>Für wen ist der Unterricht geeignet?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Für
+                      <strong
+                        >Kinder, Jugendliche, Erwachsene und Senioren</strong
+                      >
+                      – vom absoluten Anfänger bis Fortgeschrittene. Wir passen
+                      Tempo und Inhalte an.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--indigo">
+                <details>
+                  <summary>Wie lange dauert eine Unterrichtseinheit?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Du kannst zwischen <strong>30 Minuten</strong> und
+                      <strong>45 Minuten</strong> pro Einheit wählen. Die Preise
+                      findest du unter <a href="preise.html">Preise</a>.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--green">
+                <details>
+                  <summary>Gibt es flexible Termine oder 10er‑Karten?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Ja. Neben Monatsmodellen bieten wir eine
+                      <strong>10er‑Karte</strong> für maximale Flexibilität.
+                      Ideal, wenn du nicht jede Woche kannst.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--purple">
+                <details>
+                  <summary>
+                    Bietet ihr Einzel- oder Gruppenunterricht an?
+                  </summary>
+                  <div class="faq-content">
+                    <p>
+                      Standard ist <strong>Einzelunterricht</strong>, damit wir
+                      individuell auf dich eingehen können. Auf Anfrage sind
+                      kleine <strong>Gruppen</strong> möglich.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--salmon">
+                <details>
+                  <summary>Brauche ich ein eigenes Instrument?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Ein eigenes Instrument ist ideal. Falls du keins hast,
+                      beraten wir dich gern zu
+                      <strong>Leihinstrumenten</strong> oder
+                      <strong>Kaufempfehlungen</strong>.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--indigo">
+                <details>
+                  <summary>Unterrichtet ihr auch auf Englisch?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Ja,
+                      <strong>Unterricht auf Deutsch und Englisch</strong> ist
+                      möglich.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <div class="faq-card faq-card--sand">
+                <details>
+                  <summary>Welche Stadtteile deckt ihr ab?</summary>
+                  <div class="faq-content">
+                    <p>
+                      Wir unterrichten in <strong>Karlsruhe</strong> und
+                      Umgebung, z. B. <strong>Durlach</strong>,
+                      <strong>Ettlingen</strong>, <strong>Rheinstetten</strong>,
+                      <strong>Weingarten</strong>,
+                      <strong>Stutensee</strong> und <strong>Bruchsal</strong>.
+                      Frag gern nach deinem Stadtteil.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </section>
+
+            <script>
+              // Smooth FAQ animation
+              document
+                .querySelectorAll(".faq-card details")
+                .forEach((details) => {
+                  const content = details.querySelector(".faq-content");
+                  const summary = details.querySelector("summary");
+
+                  // Set initial state
+                  if (!details.hasAttribute("open")) {
+                    content.style.maxHeight = "0";
+                    content.style.opacity = "0";
+                  }
+
+                  summary.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    if (details.hasAttribute("open")) {
+                      // Closing animation
+                      content.style.maxHeight = "0";
+                      content.style.opacity = "0";
+                      content.style.transform = "translateY(-10px)";
+                      setTimeout(() => {
+                        details.removeAttribute("open");
+                      }, 300);
+                    } else {
+                      // Opening animation
+                      details.setAttribute("open", "");
+                      setTimeout(() => {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.style.opacity = "1";
+                        content.style.transform = "translateY(0)";
+                      }, 10);
+                    }
+                  });
+                });
+            </script>
+
+            <ul class="actions" style="margin-top: 2rem">
+              <li>
+                <a href="kontakt.html" class="button primary"
+                  >Kontakt aufnehmen</a
+                >
+              </li>
+              <li>
+                <a href="instrumente.html" class="button"
+                  >Instrumente ansehen</a
+                >
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>&copy; Kleine Musikschule Karlsruhe</li>
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
