@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>
+      Was für ein Musiker wäre ich gerne? – Quiz | Die kleine Musikschule
+      Karlsruhe
+    </title>
+    <meta
+      name="description"
+      content="Starte mit deiner Instrumentenwahl und beantworte 9 Charakterfragen: Finde heraus, was für ein Musiker du gerne wärst – vom Jazz‑Gitarren‑Virtuosen bis zur Bass‑Slap‑Legende."
+    />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="icon" href="../images/logo_small.png" />
+    <noscript
+      ><link rel="stylesheet" href="../assets/css/noscript.css"
+    /></noscript>
+    <style>
+      .quiz-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative; /* ensure back button absolute positioning anchors here */
+        z-index: 1;
+      }
+
+      .quiz-start {
+        text-align: center;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .quiz-start h2 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        color: #242943;
+        line-height: 1.2;
+      }
+
+      .quiz-start p {
+        font-size: 1.8rem;
+        margin-bottom: 2.5rem;
+        color: #8878d3;
+        font-weight: 600;
+        line-height: 1.5;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-start {
+        display: block;
+        padding: 1.25rem 3.25rem;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #fff;
+        background: linear-gradient(
+          135deg,
+          #8b7fe0 0%,
+          #6a59b3 50%,
+          #5a49a3 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        box-shadow: 0 12px 28px rgba(106, 89, 179, 0.45),
+          0 2px 8px rgba(0, 0, 0, 0.25);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-family: inherit;
+        text-align: center;
+        margin: 0 auto;
+        backdrop-filter: saturate(120%) blur(0.5px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-start:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 44px rgba(106, 89, 179, 0.55),
+          0 3px 10px rgba(0, 0, 0, 0.28);
+        filter: brightness(1.04);
+      }
+
+      .btn-start:active {
+        transform: translateY(0);
+        box-shadow: 0 10px 24px rgba(106, 89, 179, 0.45),
+          0 2px 8px rgba(0, 0, 0, 0.25);
+        filter: brightness(0.98);
+      }
+
+      .btn-start:focus-visible {
+        outline: 3px solid rgba(255, 255, 255, 0.8);
+        outline-offset: 3px;
+      }
+
+      .btn-start::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          120px 60px at var(--mx, 50%) var(--my, 50%),
+          rgba(255, 255, 255, 0.15),
+          transparent 60%
+        );
+        transition: opacity 0.25s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .btn-start:hover::after {
+        opacity: 1;
+      }
+
+      .quiz-question {
+        display: none;
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .quiz-question.active {
+        display: block;
+      }
+
+      .question-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .question-number {
+        font-size: 1.25rem;
+        color: #8878d3;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.75rem;
+      }
+
+      .question-text {
+        font-size: 1.8rem;
+        color: #242943;
+        font-weight: 700;
+        margin-bottom: 2rem;
+      }
+
+      .answers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+      }
+
+      .answer-btn {
+        width: 100%;
+        min-height: 72px;
+        padding: 1.25rem 1.5rem 1.25rem;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-radius: 18px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        color: #fff;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        background-color: transparent;
+        font-family: inherit;
+        line-height: 1.4;
+      }
+
+      .answer-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .answer-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 42px rgba(0, 0, 0, 0.25);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+
+      .answer-btn:focus {
+        outline: 3px solid rgba(255, 255, 255, 0.9);
+        outline-offset: 3px;
+      }
+
+      .answer-btn--blue {
+        background: linear-gradient(135deg, #76c2df 0%, #4fa8ca 100%);
+      }
+
+      .answer-btn--purple {
+        background: linear-gradient(135deg, #8878d3 0%, #6a59b3 100%);
+      }
+
+      .answer-btn--salmon {
+        background: linear-gradient(135deg, #f0a39c 0%, #de7f76 100%);
+      }
+
+      .answer-btn--sand {
+        background: linear-gradient(135deg, #e5c29a 0%, #cf9e6e 100%);
+      }
+
+      .answer-btn--green {
+        background: linear-gradient(135deg, #85ceb0 0%, #58ac8b 100%);
+      }
+
+      .answer-btn--indigo {
+        background: linear-gradient(135deg, #8faee5 0%, #6e8ecc 100%);
+      }
+
+      .quiz-result {
+        display: none;
+        animation: fadeInUp 0.8s ease-out;
+        text-align: center;
+      }
+
+      .quiz-result.active {
+        display: block;
+      }
+
+      .result-card {
+        border-radius: 20px;
+        padding: 3rem;
+        margin: 2rem auto;
+        max-width: 600px;
+        color: #fff;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      }
+
+      .result-icon {
+        font-size: 5rem;
+        margin-bottom: 1rem;
+      }
+
+      .result-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .result-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .result-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-secondary {
+        display: inline-block;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-family: inherit;
+        line-height: 1.5;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: #fff;
+        transform: translateY(-2px);
+        color: #fff;
+      }
+
+      .btn-primary {
+        background: #fff;
+        color: #242943;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-family: inherit;
+        line-height: 1.5;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-2px);
+        color: #242943;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #8878d3 0%, #6a59b3 100%);
+        transition: width 0.4s ease;
+        border-radius: 10px;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Header Back button */
+      .header-back-wrap {
+        position: relative;
+        margin-top: 0.25rem;
+      }
+      .back-btn {
+        display: inline-block;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #242943;
+        background: #fff;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.3s ease;
+        text-decoration: none;
+        letter-spacing: 0.01em;
+        line-height: 1;
+        white-space: nowrap;
+        margin-left: 0.35rem;
+      }
+      .back-btn:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.95);
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <div style="display: flex; align-items: flex-start; gap: 0.75rem">
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+            "
+          >
+            <a href="../index.html" class="logo"
+              ><img
+                src="../images/logo_small.png"
+                alt="Logo"
+                class="logo-img"
+              />
+              <strong>kleine</strong> <span>musikschule Karlsruhe</span></a
+            >
+            <div class="header-back-wrap">
+              <a class="back-btn" href="../blog.html">← Zurück</a>
+            </div>
+          </div>
+          <nav style="margin-left: auto">
+            <a href="#menu">Menu</a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Menu -->
+      <nav id="menu">
+        <ul class="links">
+          <li><a href="../überuns.html">Über uns</a></li>
+          <li><a href="../lehre.html">Lehre</a></li>
+          <li><a href="../instrumente.html">Instrumente</a></li>
+          <li><a href="../preise.html">Preise</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../faq.html">FAQ</a></li>
+          <li><a href="../kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main" class="alt">
+        <section id="one">
+          <div class="inner">
+            <div class="quiz-container">
+              <!-- Start Screen -->
+              <div id="quiz-start" class="quiz-start">
+                <h2>🎵 Was für ein Musiker wäre ich gerne? 🎵</h2>
+                <p>
+                  Wähle zuerst dein Instrument und beantworte danach 10 kurze
+                  Fragen zu deinem Musik‑Charakter.
+                </p>
+                <button class="btn-start" onclick="showInstrumentStep()">
+                  Quiz starten
+                </button>
+              </div>
+
+              <!-- Instrument Selection -->
+              <div id="instrument-step" class="quiz-question hidden">
+                <div class="question-header">
+                  <div class="question-number">Instrument wählen</div>
+                  <h3 class="question-text">
+                    Mit welchem Instrument willst du starten?
+                  </h3>
+                </div>
+                <div class="answers-grid">
+                  <button
+                    type="button"
+                    class="answer-btn answer-btn--blue"
+                    onclick="selectInstrument('gitarre')"
+                  >
+                    Gitarre
+                  </button>
+                  <button
+                    type="button"
+                    class="answer-btn answer-btn--purple"
+                    onclick="selectInstrument('klavier')"
+                  >
+                    Klavier/Keyboard
+                  </button>
+                  <button
+                    type="button"
+                    class="answer-btn answer-btn--salmon"
+                    onclick="selectInstrument('ukulele')"
+                  >
+                    Ukulele
+                  </button>
+                  <button
+                    type="button"
+                    class="answer-btn answer-btn--sand"
+                    onclick="selectInstrument('schlagzeug')"
+                  >
+                    Schlagzeug
+                  </button>
+                  <button
+                    type="button"
+                    class="answer-btn answer-btn--green"
+                    onclick="selectInstrument('bass')"
+                  >
+                    Bass/E‑Bass
+                  </button>
+                </div>
+              </div>
+
+              <!-- Progress Bar -->
+              <div id="progress-container" class="hidden">
+                <div class="progress-bar">
+                  <div
+                    id="progress-fill"
+                    class="progress-fill"
+                    style="width: 0%"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Questions -->
+              <div id="quiz-questions"></div>
+
+              <!-- Result -->
+              <div id="quiz-result" class="quiz-result"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="icons">
+            <li>
+              <a
+                href="https://www.instagram.com/kleine_musikschule/"
+                class="icon brands alt fa-instagram"
+                ><span class="label">Instagram</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/@kleinemusikschule?lang=de-DE"
+                class="icon brands alt fa-tiktok"
+                ><span class="label">TikTok</span></a
+              >
+            </li>
+          </ul>
+          <ul class="copyright">
+            <li>&copy; Die kleine Musikschule Karlsruhe</li>
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+            <li><a href="../datenschutz.html">Datenschutz</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+    <script>
+      // Enhance start button highlight to follow mouse
+      document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.querySelector(".btn-start");
+        if (btn) {
+          btn.addEventListener("mousemove", (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const mx = ((e.clientX - rect.left) / rect.width) * 100 + "%";
+            const my = ((e.clientY - rect.top) / rect.height) * 100 + "%";
+            btn.style.setProperty("--mx", mx);
+            btn.style.setProperty("--my", my);
+          });
+        }
+      });
+      // Quiz Data
+      const questions = [
+        {
+          question: "Welche Musik beschreibt dich am besten?",
+          answers: [
+            { text: "Jazz, Blues, Soul", instrument: "gitarre" },
+            { text: "Klassik, Filmmusik, Neo‑Soul", instrument: "klavier" },
+            { text: "Indie, Folk, Easy Listening", instrument: "ukulele" },
+            { text: "Rock, Funk, Hip‑Hop", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Wie willst du dich ausdrücken?",
+          answers: [
+            {
+              text: "Elegante Linien und Improvisation",
+              instrument: "gitarre",
+            },
+            { text: "Harmonische Tiefe und Melodie", instrument: "klavier" },
+            { text: "Leicht, fröhlich, unkompliziert", instrument: "ukulele" },
+            {
+              text: "Kraftvoller Groove und Energie",
+              instrument: "schlagzeug",
+            },
+          ],
+        },
+        {
+          question: "Was ist dir im Zusammenspiel wichtig?",
+          answers: [
+            { text: "Feingefühl und Dynamik", instrument: "gitarre" },
+            { text: "Struktur und Klangfarben", instrument: "klavier" },
+            { text: "Gemeinschaft und Atmosphäre", instrument: "ukulele" },
+            { text: "Timing und Drive", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Wie übst du am liebsten?",
+          answers: [
+            {
+              text: "Mit Backing‑Tracks und Improvisation",
+              instrument: "gitarre",
+            },
+            { text: "Mit Metronom und Voicings", instrument: "klavier" },
+            { text: "Kurz, regelmäßig und spielerisch", instrument: "ukulele" },
+            { text: "Rudiments, Grooves, Fills", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Welche Bühne reizt dich?",
+          answers: [
+            { text: "Jazzclub oder Session", instrument: "gitarre" },
+            { text: "Konzertsaal oder Studio", instrument: "klavier" },
+            { text: "Open‑Air, Strand, Wohnzimmer", instrument: "ukulele" },
+            { text: "Festival oder große Bühne", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Welcher Skill spricht dich an?",
+          answers: [
+            { text: "Walking Lines & Akkord‑Melodie", instrument: "gitarre" },
+            { text: "Voicings & Reharmonisierung", instrument: "klavier" },
+            { text: "Strumming & Fingerpicking leicht", instrument: "ukulele" },
+            { text: "Ghost Notes & Offbeats", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Welche Rolle willst du in der Band?",
+          answers: [
+            { text: "Melodie & Leads", instrument: "gitarre" },
+            { text: "Harmonie & Begleitung", instrument: "klavier" },
+            { text: "Mood & Farbe", instrument: "ukulele" },
+            { text: "Puls & Energie", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Wie klingt dein idealer Sound?",
+          answers: [
+            { text: "Warm, holzig, dynamisch", instrument: "gitarre" },
+            { text: "Klar, reich, expressiv", instrument: "klavier" },
+            { text: "Hell, weich, leicht", instrument: "ukulele" },
+            { text: "Trocken, punchy, tight", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Was treibt dich an?",
+          answers: [
+            { text: "Ausdruck & Virtuosität", instrument: "gitarre" },
+            { text: "Komposition & Klang", instrument: "klavier" },
+            { text: "Leichtigkeit & Spaß", instrument: "ukulele" },
+            { text: "Energie & Präzision", instrument: "schlagzeug" },
+          ],
+        },
+        {
+          question: "Welches Ziel hast du?",
+          answers: [
+            { text: "Jazz‑Virtuosität & Ausdruck", instrument: "gitarre" },
+            { text: "Improvisation & Komposition", instrument: "klavier" },
+            { text: "Regelmäßig spielen & Freude", instrument: "ukulele" },
+            {
+              text: "Groove‑Master & Band‑Heartbeat",
+              instrument: "schlagzeug",
+            },
+          ],
+        },
+      ];
+
+      const instruments = {
+        gitarre: {
+          name: "Jazz‑Gitarren‑Virtuose",
+          icon: "🎸",
+          description:
+            "Du hast Gefühl, Technik und musikalische Neugier – perfekte Zutaten für virtuoses Gitarrenspiel. Von geschmackvollen Akkorden bis zu eleganten Läufen: dein Sound erzählt Geschichten.",
+          color: "linear-gradient(135deg, #76c2df 0%, #4fa8ca 100%)",
+          link: "../instrummente/gitarre/index.html",
+        },
+        klavier: {
+          name: "Tastenpoet",
+          icon: "🎹",
+          description:
+            "Feines Gehör, klare Struktur und Ausdruckskraft: Als Tastenpoet formst du Harmonien und Melodien zu berührender Musik – von Jazzballaden bis moderner Filmmusik.",
+          color: "linear-gradient(135deg, #8878d3 0%, #6a59b3 100%)",
+          link: "../instrummente/klavier/index.html",
+        },
+        ukulele: {
+          name: "Ukulele‑Sonnenschein",
+          icon: "🎵",
+          description:
+            "Locker, leicht und immer positiv: Mit der Ukulele bringst du Wärme und gute Laune. Dein Stil: melodisch, entspannt und immer ein Lächeln.",
+          color: "linear-gradient(135deg, #f0a39c 0%, #de7f76 100%)",
+          link: "../instrummente/ukulele/index.html",
+        },
+        schlagzeug: {
+          name: "Rhythmusmaschine",
+          icon: "🥁",
+          description:
+            "Energie, Präzision und Groove: Du hältst die Band zusammen, treibst sie voran und setzt die Akzente. Dein Timing ist der Puls der Musik.",
+          color: "linear-gradient(135deg, #e5c29a 0%, #cf9e6e 100%)",
+          link: "../instrummente/schlagzeug/index.html",
+        },
+        bass: {
+          name: "Bass‑Slap‑König",
+          icon: "🎸",
+          description:
+            "Groove im Blut und ein knackiger Anschlag: Du liebst es, Linien zu formen und mit Slaps und Ghost Notes den Raum zum Schwingen zu bringen.",
+          color: "linear-gradient(135deg, #85ceb0 0%, #58ac8b 100%)",
+          link: "../instrummente/bass/index.html",
+        },
+      };
+
+      // Persona libraries: 6 variants per instrument
+      const personaLibrary = {
+        gitarre: [
+          {
+            title: "Jazz‑Gitarren‑Virtuose",
+            desc: "Ausdrucksstarke Linien, elegante Läufe und feine Dynamik – du erzählst mit Saiten.",
+          },
+          {
+            title: "Blues Bend‑Magier",
+            desc: "Gefühl vor Geschwindigkeit: deine Bends singen, dein Vibrato spricht.",
+          },
+          {
+            title: "Akkord‑Melodie Erzähler",
+            desc: "Du verbindest Harmonie und Melodie – Solo‑Gitarre mit Herz.",
+          },
+          {
+            title: "Funk‑Comping Meister",
+            desc: "Saubere Akkents, klare Sechzehntel – du lässt den Groove atmen.",
+          },
+          {
+            title: "Singer‑Songwriter Begleiter",
+            desc: "Warm, tragend, songdienlich – du gibst Songs ein Zuhause.",
+          },
+          {
+            title: "Fusion Lead‑Artist",
+            desc: "Mut zur Farbe: Mix aus Jazz, Rock und modernen Sounds.",
+          },
+        ],
+        klavier: [
+          {
+            title: "Tastenpoet",
+            desc: "Feines Gehör und klare Linien – Klang und Emotion im Gleichgewicht.",
+          },
+          {
+            title: "Voicing‑Architekt",
+            desc: "Du baust Harmonien mit Tiefe: Guide‑Tones, Spannungen, Farben.",
+          },
+          {
+            title: "Reharmonisierung‑Alchemist",
+            desc: "Aus simpel mach spannend – du findest neue Wege durch Akkorde.",
+          },
+          {
+            title: "Neo‑Soul Colorist",
+            desc: "Butterweiche Voicings, laid‑back Feel und sanfte Synkopen.",
+          },
+          {
+            title: "Film‑Score Erzähler",
+            desc: "Du malst Bilder mit Klang – cineastisch, weit, erzählerisch.",
+          },
+          {
+            title: "Swing‑Comping Kapitän",
+            desc: "Stützt das Ensemble: Timing, Drive und musikalische Übersicht.",
+          },
+        ],
+        ukulele: [
+          {
+            title: "Ukulele‑Sonnenschein",
+            desc: "Leicht, freundlich, melodisch – du bringst gute Laune ins Set.",
+          },
+          {
+            title: "Strumming‑Groover",
+            desc: "Cleanes Strumming und Rhythmusgefühl – simple Patterns, großer Effekt.",
+          },
+          {
+            title: "Fingerpicking‑Feingeist",
+            desc: "Feine Arpeggien und klare Linien – minimalistisch und schön.",
+          },
+          {
+            title: "Indie‑Chiller",
+            desc: "Zurückhaltend, geschmackvoll, modern – Atmosphäre statt Effekthascherei.",
+          },
+          {
+            title: "Beach‑Vibes Ranger",
+            desc: "Easy‑Going und warm – du bringst Sommer, wo du spielst.",
+          },
+          {
+            title: "Happy‑Hooks Erfinder",
+            desc: "Kleine Motive mit Ohrwurm‑Potential – charmant und eingängig.",
+          },
+        ],
+        schlagzeug: [
+          {
+            title: "Rhythmusmaschine",
+            desc: "Energie, Präzision und Drive – dein Groove ist der Motor.",
+          },
+          {
+            title: "Ghost‑Notes Ninja",
+            desc: "Feine Mikrorhythmen – du lässt Beats lebendig werden.",
+          },
+          {
+            title: "Backbeat‑Commander",
+            desc: "Solider 2 & 4 – die Band atmet mit dir.",
+          },
+          {
+            title: "Offbeat‑Akrobat",
+            desc: "Mut zur Verschiebung – du spielst mit Erwartung und Spannung.",
+          },
+          {
+            title: "Pocket‑Pilot",
+            desc: "Du sitzt tief im Groove – stabil und geschmackvoll.",
+          },
+          {
+            title: "Fill‑Designer",
+            desc: "Kreative, songdienliche Fills – nie zu viel, immer passend.",
+          },
+        ],
+        bass: [
+          {
+            title: "Bass‑Slap‑König",
+            desc: "Knackiger Anschlag, Ghost‑Notes, Dead Notes – du schiebst an.",
+          },
+          {
+            title: "Walking‑Lines Kapitän",
+            desc: "Verbinde Akkorde melodisch – dein Walking ist Musik im Fluss.",
+          },
+          {
+            title: "Pocket‑Groover",
+            desc: "Weniger ist mehr: stabile Linien, die alles tragen.",
+          },
+          {
+            title: "Funk‑Hammer Meister",
+            desc: "Synkopen, Akzente, Chic – du bringst die Hüften zum Tanzen.",
+          },
+          {
+            title: "Sub‑Tone Architekt",
+            desc: "Tiefe Wärme, kontrollierter Druck – dein Sound füllt den Raum.",
+          },
+          {
+            title: "Melodic‑Bass Erzähler",
+            desc: "Sangliche Linien über dem Fundament – Emotion mit Substanz.",
+          },
+        ],
+      };
+
+      let currentQuestion = 0;
+      let answers = [];
+      let selectedInstrument = null;
+      const colors = ["blue", "purple", "salmon", "sand", "green", "indigo"];
+
+      function showInstrumentStep() {
+        document.getElementById("quiz-start").style.display = "none";
+        const step = document.getElementById("instrument-step");
+        step.classList.remove("hidden");
+        step.classList.add("active");
+      }
+
+      function selectInstrument(instrument) {
+        selectedInstrument = instrument;
+        // Optionally weight the instrument choice slightly
+        answers.push(instrument);
+        document.getElementById("instrument-step").classList.add("hidden");
+        document
+          .getElementById("progress-container")
+          .classList.remove("hidden");
+        currentQuestion = 0;
+        showQuestion(0);
+      }
+
+      function showQuestion(index) {
+        const container = document.getElementById("quiz-questions");
+        container.innerHTML = "";
+
+        const question = questions[index];
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "quiz-question active";
+
+        let answersHTML = "";
+        question.answers.forEach((answer, i) => {
+          const colorClass = colors[i % colors.length];
+          answersHTML += `
+            <button class="answer-btn answer-btn--${colorClass}" onclick="selectAnswer('${answer.instrument}')">
+              ${answer.text}
+            </button>
+          `;
+        });
+
+        questionDiv.innerHTML = `
+          <div class="question-header">
+            <div class="question-number">Frage ${index + 1} von ${
+          questions.length
+        }</div>
+            <h3 class="question-text">${question.question}</h3>
+          </div>
+          <div class="answers-grid">
+            ${answersHTML}
+          </div>
+        `;
+
+        container.appendChild(questionDiv);
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+        document.getElementById("progress-fill").style.width = progress + "%";
+      }
+
+      function selectAnswer(instrument) {
+        answers.push(instrument);
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+          setTimeout(() => {
+            showQuestion(currentQuestion);
+          }, 300);
+        } else {
+          setTimeout(() => {
+            showResult();
+          }, 300);
+        }
+      }
+
+      function showResult() {
+        document.getElementById("quiz-questions").style.display = "none";
+        document.getElementById("progress-container").style.display = "none";
+
+        // Count instruments
+        const counts = {};
+        answers.forEach((answer) => {
+          counts[answer] = (counts[answer] || 0) + 1;
+        });
+
+        // Only show a single result matching the chosen instrument
+        const chosen = selectedInstrument || "gitarre";
+        // Heuristics: weight specific questions to map to persona variants
+        // Indices correspond to questions array above (0-based after instrument choice):
+        // 1: Ausdruck (expressive) → Virtuose/Poet, 3: Üben (practice) → Architect/Ninja,
+        // 5: Skill → specific technique persona, 7: Sound → Colorist/Sub‑Tone,
+        // 9: Ziel → advanced vs relaxed persona
+        function pickPersonaKey(inst) {
+          const library = personaLibrary[inst];
+          const score = new Array(library.length).fill(0);
+
+          function bump(idx, amt = 1) {
+            if (idx in score) score[idx] += amt;
+          }
+
+          // Map instrument to persona indices
+          const map = {
+            gitarre: {
+              expressive: 0,
+              practice: 2,
+              skill: 3,
+              sound: 4,
+              goal: 5,
+            },
+            klavier: {
+              expressive: 0,
+              practice: 1,
+              skill: 2,
+              sound: 3,
+              goal: 4,
+            },
+            ukulele: {
+              expressive: 0,
+              practice: 2,
+              skill: 1,
+              sound: 4,
+              goal: 5,
+            },
+            schlagzeug: {
+              expressive: 0,
+              practice: 5,
+              skill: 1,
+              sound: 4,
+              goal: 2,
+            },
+            bass: { expressive: 2, practice: 4, skill: 0, sound: 4, goal: 5 },
+          };
+
+          const m = map[inst];
+          // Look at specific answers and weight if they match the chosen instrument
+          const Q = answers.slice(1); // ignore instrument choice at index 0
+          if (Q[1] === inst) bump(m.expressive, 2);
+          if (Q[3] === inst) bump(m.practice, 1.5);
+          if (Q[5] === inst) bump(m.skill, 2.5);
+          if (Q[7] === inst) bump(m.sound, 1.5);
+          if (Q[9] === inst) bump(m.goal, 1.5);
+
+          // Fallback: recent skew
+          const recentSkew = Q.slice(-5).filter((a) => a === inst).length;
+          bump(m.expressive, recentSkew * 0.5);
+
+          // Choose max scored persona
+          let bestIdx = 0,
+            bestScore = -Infinity;
+          for (let i = 0; i < score.length; i++) {
+            if (score[i] > bestScore) {
+              bestScore = score[i];
+              bestIdx = i;
+            }
+          }
+          return library[bestIdx];
+        }
+        const persona = pickPersonaKey(chosen);
+        const meta = instruments[chosen];
+        const resultContainer = document.getElementById("quiz-result");
+        function wikiLabel(inst) {
+          return inst === "klavier"
+            ? "Klavier"
+            : inst === "gitarre"
+            ? "Gitarre"
+            : inst === "ukulele"
+            ? "Ukulele"
+            : inst === "schlagzeug"
+            ? "Schlagzeug"
+            : "Bass";
+        }
+        resultContainer.innerHTML = `
+          <div class="result-card" style="background: ${meta.color}">
+            <div class="result-icon">${meta.icon}</div>
+            <h2 class="result-title">Dein Musik‑Typ: ${persona.title}</h2>
+            <p class="result-description">${persona.desc}</p>
+            <div class="result-actions">
+              <a href="${
+                meta.link
+              }" class="btn-primary">Hier geht’s zum ${wikiLabel(
+          chosen
+        )}‑Wiki</a>
+              <a href="../kontakt.html" class="btn-secondary">Probestunde buchen</a>
+              <button class="btn-secondary" onclick="resetQuiz()">Quiz wiederholen</button>
+            </div>
+          </div>
+        `;
+        resultContainer.classList.add("active");
+      }
+
+      function resetQuiz() {
+        currentQuestion = 0;
+        answers = [];
+        document.getElementById("quiz-result").classList.remove("active");
+        document.getElementById("quiz-start").style.display = "block";
+        document.getElementById("progress-container").classList.add("hidden");
+        document.getElementById("progress-fill").style.width = "0%";
+      }
+    </script>
+  </body>
+</html>
