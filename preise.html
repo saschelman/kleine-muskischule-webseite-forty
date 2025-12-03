@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Preise - Kleine Musikschule Karlsruhe</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+      /* Modern pricing cards */
+      .pricing-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+        margin: 3em 0;
+      }
+
+      .pricing-card {
+        background: linear-gradient(
+          135deg,
+          rgba(155, 241, 255, 0.08) 0%,
+          rgba(155, 241, 255, 0.02) 100%
+        );
+        border: 2px solid rgba(155, 241, 255, 0.2);
+        border-radius: 12px;
+        padding: 2.5em;
+        position: relative;
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .pricing-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #9bf1ff 0%, #6fc3df 100%);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(155, 241, 255, 0.4);
+        box-shadow: 0 20px 40px rgba(155, 241, 255, 0.15);
+      }
+
+      .pricing-card.featured {
+        border-color: #9bf1ff;
+        background: linear-gradient(
+          135deg,
+          rgba(155, 241, 255, 0.12) 0%,
+          rgba(155, 241, 255, 0.04) 100%
+        );
+      }
+
+      .pricing-card.featured::before {
+        height: 6px;
+      }
+
+      .pricing-header {
+        text-align: center;
+        margin-bottom: 2em;
+      }
+
+      .pricing-title {
+        font-size: 1.5em;
+        font-weight: 600;
+        color: #9bf1ff;
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .pricing-subtitle {
+        font-size: 0.9em;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0;
+      }
+
+      .pricing-table {
+        width: 100%;
+        margin: 2em 0;
+      }
+
+      .pricing-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 1.2em 0;
+        border-bottom: 1px solid rgba(212, 212, 255, 0.1);
+        align-items: center;
+      }
+
+      .pricing-row:last-child {
+        border-bottom: none;
+      }
+
+      .duration {
+        font-size: 1.1em;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 600;
+      }
+
+      .price-group {
+        display: flex;
+        gap: 1.5em;
+        align-items: center;
+      }
+
+      .price-item {
+        text-align: center;
+      }
+
+      .price-label {
+        font-size: 0.7em;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.3em;
+        display: block;
+      }
+
+      .price-value {
+        font-size: 1.4em;
+        font-weight: 600;
+        color: #9bf1ff;
+      }
+
+      .pricing-features {
+        margin-top: 2em;
+        padding-top: 2em;
+        border-top: 1px solid rgba(212, 212, 255, 0.1);
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        margin: 1em 0;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .feature-item::before {
+        content: "✓";
+        color: #9bf1ff;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-right: 0.8em;
+      }
+
+      .info-box {
+        background: rgba(155, 241, 255, 0.05);
+        border-left: 3px solid #9bf1ff;
+        padding: 1.5em;
+        margin: 2em 0;
+        border-radius: 4px;
+      }
+
+      .info-box p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.8;
+      }
+
+      #map {
+        height: 600px;
+        width: 100%;
+        border-radius: 8px;
+        border: 2px solid rgba(155, 241, 255, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .map-legend {
+        background: rgba(155, 241, 255, 0.05);
+        padding: 1em;
+        border-radius: 0 0 8px 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+      }
+
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .legend-color.heimservice {
+        background: rgba(59, 130, 246, 0.5);
+      }
+
+      .legend-color.extra {
+        background: rgba(239, 68, 68, 0.5);
+      }
+
+      @media screen and (max-width: 736px) {
+        .pricing-container {
+          grid-template-columns: 1fr;
+        }
+
+        .price-group {
+          flex-direction: column;
+          gap: 0.8em;
+        }
+
+        .pricing-card {
+          padding: 1.5em;
+        }
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <div id="wrapper">
+      <header id="header" class="alt style2">
+        <a href="index.html" class="logo">
+          <img src="images/logo_small.png" alt="Logo" class="logo-img" />
+          <strong>kleine</strong> <span>musikschule Karlsruhe</span>
+        </a>
+        <nav><a href="#menu">Menu</a></nav>
+      </header>
+
+      <nav id="menu">
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="überuns.html">Über uns</a></li>
+          <li><a href="lehre.html">Lehre</a></li>
+          <li><a href="instrumente.html">Instrumente</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <section id="banner" class="style2">
+        <div class="inner">
+          <span class="image">
+            <img src="images/preise.jpg" alt="Preise" />
+          </span>
+          <header class="major">
+            <h1>Unsere Preise</h1>
+          </header>
+          <div class="content">
+            <p>
+              Transparent, fair und flexibel – finde das passende Angebot für
+              dich!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div id="main">
+        <section id="one">
+          <div class="inner">
+            <header class="major">
+              <h2>Wähle deinen Unterricht</h2>
+            </header>
+            <p>
+              Ob regelmäßiger Monatsunterricht oder flexible 10er-Karte – bei
+              uns findest du das passende Modell für deine musikalischen Ziele.
+            </p>
+
+            <div class="pricing-container">
+              <!-- Monthly Subscription Card -->
+              <div class="pricing-card">
+                <div class="pricing-header">
+                  <h3 class="pricing-title">Monatsabo</h3>
+                  <p class="pricing-subtitle">Regelmäßiger Unterricht</p>
+                </div>
+
+                <div class="pricing-table">
+                  <div class="pricing-row">
+                    <span class="duration">30 Min.</span>
+                    <div class="price-group">
+                      <div class="price-item">
+                        <span class="price-label">Normal</span>
+                        <span class="price-value">60 €</span>
+                      </div>
+                      <div class="price-item">
+                        <span class="price-label">Heimservice</span>
+                        <span class="price-value">90 €</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pricing-row">
+                    <span class="duration">45 Min.</span>
+                    <div class="price-group">
+                      <div class="price-item">
+                        <span class="price-label">Normal</span>
+                        <span class="price-value">90 €</span>
+                      </div>
+                      <div class="price-item">
+                        <span class="price-label">Heimservice</span>
+                        <span class="price-value">120 €</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pricing-row">
+                    <span class="duration">60 Min.</span>
+                    <div class="price-group">
+                      <div class="price-item">
+                        <span class="price-label">Normal</span>
+                        <span class="price-value">120 €</span>
+                      </div>
+                      <div class="price-item">
+                        <span class="price-label">Heimservice</span>
+                        <span class="price-value">160 €</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pricing-features">
+                  <div class="feature-item">Monatliche Zahlung</div>
+                  <div class="feature-item">
+                    Jahreskalkulation auf 12 Monate
+                  </div>
+                  <div class="feature-item">Kontinuität & Routine</div>
+                  <div class="feature-item">Feste Termine</div>
+                </div>
+              </div>
+
+              <!-- 10er Card (Featured) -->
+              <div class="pricing-card featured">
+                <div class="pricing-header">
+                  <h3 class="pricing-title">10er-Karte 🎟️</h3>
+                  <p class="pricing-subtitle">Maximale Flexibilität</p>
+                </div>
+
+                <div class="pricing-table">
+                  <div class="pricing-row">
+                    <span class="duration">30 Min.</span>
+                    <div class="price-group">
+                      <div class="price-item">
+                        <span class="price-label">Normal</span>
+                        <span class="price-value">200 €</span>
+                      </div>
+                      <div class="price-item">
+                        <span class="price-label">Heimservice</span>
+                        <span class="price-value">300 €</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pricing-row">
+                    <span class="duration">45 Min.</span>
+                    <div class="price-group">
+                      <div class="price-item">
+                        <span class="price-label">Normal</span>
+                        <span class="price-value">300 €</span>
+                      </div>
+                      <div class="price-item">
+                        <span class="price-label">Heimservice</span>
+                        <span class="price-value">450 €</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pricing-row">
+                    <span class="duration">60 Min.</span>
+                    <div class="price-group">
+                      <div class="price-item">
+                        <span class="price-label">Normal</span>
+                        <span class="price-value">400 €</span>
+                      </div>
+                      <div class="price-item">
+                        <span class="price-label">Heimservice</span>
+                        <span class="price-value">600 €</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pricing-features">
+                  <div class="feature-item">Freie Terminwahl</div>
+                  <div class="feature-item">Individueller Zeitplan</div>
+                  <div class="feature-item">Keine monatliche Bindung</div>
+                  <div class="feature-item">10 Einheiten gültig</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <p>
+                <strong>Hinweis:</strong> Die genannten Preise gelten für
+                Unterricht innerhalb von Karlsruhe. Außerhalb der Stadt können
+                zusätzliche Kosten entstehen.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <p>
+                <strong>Kostenlose Probestunde:</strong> Du bist dir noch
+                unsicher? Kein Problem! Vereinbare eine kostenlose Probestunde
+                und lerne uns und deinen Lehrer kennen – ganz unverbindlich.
+              </p>
+            </div>
+
+            <header class="major" style="margin-top: 3em">
+              <h2>Unsere Service-Zonen</h2>
+            </header>
+            <p>
+              Wir bieten Musikunterricht in ganz Karlsruhe an. Die Karte zeigt
+              unsere Service-Zonen:
+              <strong style="color: #3b82f6">Blaue Zone = Heimservice</strong> |
+              <strong style="color: #ef4444"
+                >Rote Zone = Heimservice + Extrakosten</strong
+              >
+            </p>
+
+            <div style="margin: 2em 0">
+              <!-- Location Checker -->
+              <div
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(155, 241, 255, 0.1) 0%,
+                    rgba(155, 241, 255, 0.05) 100%
+                  );
+                  border: 2px solid rgba(155, 241, 255, 0.3);
+                  border-radius: 12px;
+                  padding: 2em;
+                  margin-bottom: 2em;
+                "
+              >
+                <h3 style="margin-top: 0; color: #9bf1ff">
+                  📍 Prüfe deinen Standort
+                </h3>
+                <p style="margin-bottom: 1em">
+                  Klicke auf den Button und wir prüfen automatisch, ob du in
+                  unserer Heimservice-Zone liegst:
+                </p>
+                <div
+                  style="
+                    display: flex;
+                    gap: 1em;
+                    margin-bottom: 1em;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                  "
+                >
+                  <button
+                    onclick="checkLocation()"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        #667eea 0%,
+                        #764ba2 100%
+                      );
+                      color: white;
+                      border: none;
+                      padding: 1em 2.5em;
+                      font-size: 1.1em;
+                      font-weight: 600;
+                      border-radius: 50px;
+                      cursor: pointer;
+                      transition: all 0.3s ease;
+                      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                      display: inline-flex;
+                      align-items: center;
+                      gap: 0.5em;
+                    "
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'; this.style.background='linear-gradient(135deg, #764ba2 0%, #667eea 100%)'"
+                    onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'; this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'"
+                    onmousedown="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(102, 126, 234, 0.5)'"
+                    onmouseup="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+                  >
+                    <span style="font-size: 1.2em">📍</span>
+                    Meinen Standort prüfen
+                  </button>
+                </div>
+                <div
+                  id="locationResult"
+                  style="
+                    display: none;
+                    padding: 1em;
+                    border-radius: 8px;
+                    margin-top: 1em;
+                  "
+                ></div>
+              </div>
+
+              <div id="map"></div>
+              <div class="map-legend">
+                <div class="legend-item">
+                  <div class="legend-color heimservice"></div>
+                  <span>Heimservice (Stadtgebiet)</span>
+                </div>
+                <div class="legend-item">
+                  <div class="legend-color extra"></div>
+                  <span>Heimservice + Extrakosten (Außenbezirke)</span>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              // Initialize map centered on Karlsruhe
+              var map = L.map("map").setView([49.0094, 8.4044], 12);
+
+              // Add OpenStreetMap tiles
+              L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                  attribution:
+                    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                  maxZoom: 18,
+                }
+              ).addTo(map);
+
+              // Service zone boundary - accurate coordinates from manual tracing
+              var heimserviceArea = [
+                // First polygon segment (main area - west to east)
+                [49.03498034890629, 8.450869011391404],
+                [49.03477905696647, 8.457854056177439],
+                [49.03528228528907, 8.459542748323145],
+                [49.03528228528907, 8.460310335662996],
+                [49.03085370133576, 8.458928678452082],
+                [49.027733325917524, 8.464915859696447],
+                [49.020535584794516, 8.457854056177439],
+                [49.01658151077467, 8.457402174518336],
+                [49.013711962960656, 8.453180444152594],
+                [49.00610937886009, 8.448728437586652],
+                [49.00550515019745, 8.445504570762665],
+                [49.005857617977995, 8.443201808514544],
+                [49.004145609068814, 8.442280703708747],
+                [49.00505197405823, 8.43698435106836],
+                [49.000570341854484, 8.426775439459846],
+                [48.995766249529424, 8.411838753428668],
+                [48.99637059635509, 8.411147924823183],
+                [48.99581661204479, 8.404393156238996],
+                [48.99511153219444, 8.404393156238996],
+                [48.99435607842324, 8.395872936776101],
+                [48.99113268027881, 8.391958241346657],
+                [48.98942015972793, 8.393339919811154],
+                [48.989923846748354, 8.403855866355997],
+                [48.98085670131417, 8.404009383823393],
+                [48.982166502040855, 8.398098961313451],
+                [48.979949896030945, 8.393953989682188],
+                [48.98176349009901, 8.390269570454535],
+                [48.98503786779776, 8.388964671978044],
+                [48.98685127671959, 8.38965550058353],
+                [48.98826166025728, 8.394107507149585],
+                [48.99012532013066, 8.386585151226967],
+                [48.984080764260824, 8.376529757085763],
+                [48.98523936093676, 8.373459407729143],
+                [48.98725424751808, 8.371233404445405],
+                [48.99153561099601, 8.370158782170734],
+                [48.994758990441994, 8.364171561136573],
+                [49.001205108920345, 8.344905118925567],
+                [49.00906018793006, 8.35442320193016],
+                [49.00941263037734, 8.356495687745024],
+                [49.010822372039115, 8.35434646081373],
+                [49.01333967426052, 8.352350733731868],
+                [49.01605821769684, 8.353195079804664],
+                [49.01978338795257, 8.35542108308843],
+                [49.02547128465031, 8.357493567262253],
+                [49.032014079724405, 8.360256881682574],
+                [49.03790185969336, 8.361945573828251],
+                [49.03905920456421, 8.371079863163658],
+                [49.036291595944505, 8.374610764923943],
+                [49.036392238955756, 8.377374079344264],
+                [49.03533547717879, 8.37898601275549],
+                [49.0380528192473, 8.383591536790448],
+                [49.03593934380061, 8.388120302090897],
+                [49.03649288176382, 8.394568035738814],
+                [49.02330693999858, 8.396717280288186],
+                [49.024212956191064, 8.401246045588664],
+                [49.024212956191064, 8.40646563949457],
+                [49.023055265906834, 8.410764128593229],
+                [49.02129351162594, 8.413911236682793],
+                [49.02043777990113, 8.415599928829948],
+                // Second polygon segment (northeast extension)
+                [49.02044341237453, 8.415615256505475],
+                [49.02763991958014, 8.428431228573515],
+                [49.02971657043818, 8.431451084060228],
+                [49.03208288087566, 8.431009153988725],
+                [49.03396619037903, 8.430493568906229],
+                [49.03724973898625, 8.433587079405385],
+                [49.043275660944914, 8.441069078277877],
+                [49.04409641478264, 8.442763143551502],
+                [49.04404813552023, 8.44534106896677],
+                [49.04293769954512, 8.448876509537428],
+                [49.04177895730939, 8.452853880179532],
+                [49.03497080142907, 8.451086159894942],
+              ];
+
+              // Durlach zone (separate area)
+              var durlachArea = [
+                [49.001214114211706, 8.460329079805604],
+                [49.0057077512343, 8.472261191730638],
+                [49.00807520334169, 8.480215933014904],
+                [49.008171831649236, 8.483972338621271],
+                [49.006529124920974, 8.487728744227638],
+                [49.00280867698703, 8.483972338621271],
+                [49.00010272208564, 8.479405727884284],
+                [48.997879863432416, 8.477196077526742],
+                [48.991887315528174, 8.472924086837878],
+                [48.99386880226817, 8.46585320569659],
+                [48.984830649561474, 8.457898464413717],
+                [48.982800464661096, 8.460181769782224],
+                [48.984733975965725, 8.450311998188567],
+                [48.986474072000306, 8.447218487689412],
+                [48.99024407162605, 8.43779064616868],
+                [48.99077571528997, 8.43617023590744],
+                [48.99483535256695, 8.43808526621541],
+                [48.99643011956084, 8.440294916572952],
+                [48.99594686222693, 8.442136291869929],
+                [48.99662342118157, 8.443683047118782],
+                [48.995366947237585, 8.450680273249105],
+                [49.00135907657369, 8.460844664888072],
+              ];
+
+              // Draw the Heimservice zone with blue border and light blue fill
+              var heimservicePolygon = L.polygon(heimserviceArea, {
+                color: "#3b82f6",
+                fillColor: "#93c5fd",
+                fillOpacity: 0.3,
+                weight: 4,
+                opacity: 1,
+                smoothFactor: 1.5,
+              }).addTo(map);
+
+              heimservicePolygon.bindPopup(
+                '<strong style="color: #3b82f6;">Heimservice-Zone</strong><br>✓ Standard-Tarif<br><small>Waldstadt, Rintheim, Oststadt, Südstadt,<br>Innenstadt-West, Weststadt, Südweststadt,<br>Beiertheim-Bulach, Mühlburg</small>'
+              );
+
+              // Draw the Durlach zone with blue border and light blue fill
+              var durlachPolygon = L.polygon(durlachArea, {
+                color: "#3b82f6",
+                fillColor: "#93c5fd",
+                fillOpacity: 0.3,
+                weight: 4,
+                opacity: 1,
+                smoothFactor: 1.5,
+              }).addTo(map);
+
+              durlachPolygon.bindPopup(
+                '<strong style="color: #3b82f6;">Heimservice-Zone</strong><br>✓ Standard-Tarif<br><small>Durlach</small>'
+              );
+
+              // Add marker for school location
+              var schoolMarker = L.marker([49.0094, 8.4044], {
+                icon: L.divIcon({
+                  html: '<div style="background-color: #9bf1ff; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 10px rgba(0,0,0,0.4);"></div>',
+                  className: "school-marker",
+                  iconSize: [24, 24],
+                }),
+              }).addTo(map);
+              schoolMarker.bindPopup(
+                "<strong>🎵 Kleine Musikschule Karlsruhe</strong><br>Zentrale Lage<br><small>Tullastraße 82, 76131 Karlsruhe</small>"
+              );
+
+              // Location checker function
+              var locationMarker = null;
+
+              window.checkLocation = async function () {
+                const resultDiv = document.getElementById("locationResult");
+
+                // Show loading
+                resultDiv.style.display = "block";
+                resultDiv.style.background = "rgba(155, 241, 255, 0.1)";
+                resultDiv.style.border = "2px solid rgba(155, 241, 255, 0.3)";
+                resultDiv.innerHTML = "🔍 Ermittle deinen Standort...";
+
+                // Check if geolocation is supported
+                if (!navigator.geolocation) {
+                  resultDiv.style.background = "rgba(239, 68, 68, 0.2)";
+                  resultDiv.style.border = "2px solid rgba(239, 68, 68, 0.5)";
+                  resultDiv.innerHTML =
+                    "❌ Dein Browser unterstützt keine Standortermittlung.";
+                  return;
+                }
+
+                // Get user's current position
+                navigator.geolocation.getCurrentPosition(
+                  async function (position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    const point = [lat, lon];
+
+                    try {
+                      // Get address from coordinates using reverse geocoding
+                      const response = await fetch(
+                        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`
+                      );
+                      const data = await response.json();
+                      const address = data.display_name || "Dein Standort";
+
+                      // Check if point is in heimservice zone
+                      const inMainZone = isPointInPolygon(
+                        point,
+                        heimserviceArea
+                      );
+                      const inDurlach = isPointInPolygon(point, durlachArea);
+                      const inZone = inMainZone || inDurlach;
+
+                      // Calculate distance to school
+                      const schoolLocation = [49.0094, 8.4044];
+                      const distance = calculateDistance(
+                        lat,
+                        lon,
+                        schoolLocation[0],
+                        schoolLocation[1]
+                      );
+
+                      // Remove old marker if exists
+                      if (locationMarker) {
+                        map.removeLayer(locationMarker);
+                      }
+
+                      // Add marker for checked location
+                      locationMarker = L.marker(point, {
+                        icon: L.divIcon({
+                          html: `<div style="background-color: ${
+                            inZone ? "#3b82f6" : "#ef4444"
+                          }; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 10px rgba(0,0,0,0.4);"></div>`,
+                          className: "location-marker",
+                          iconSize: [20, 20],
+                        }),
+                      }).addTo(map);
+
+                      // Center map on location
+                      map.setView(point, 14);
+
+                      // Display result
+                      if (inZone) {
+                        resultDiv.style.background = "rgba(59, 130, 246, 0.2)";
+                        resultDiv.style.border =
+                          "2px solid rgba(59, 130, 246, 0.5)";
+                        resultDiv.innerHTML = `
+                          <strong style="color: #9bf1ff;">✓ Glückwunsch!</strong><br>
+                          <p style="margin: 0.5em 0;">Dein Standort liegt in unserer <strong>Standard-Heimservice-Zone</strong>.</p>
+                          <p style="margin: 0.5em 0; font-size: 0.9em;">📍 Entfernung zur Schule: ca. ${distance.toFixed(
+                            1
+                          )} km</p>
+                          <p style="margin: 0.5em 0 0 0; color: rgba(255,255,255,0.8); font-size: 0.9em;">
+                            → <strong>Keine Extrakosten</strong> für Heimservice!
+                          </p>
+                        `;
+                      } else {
+                        // Estimate extra cost based on distance
+                        let extraCost = 0;
+                        if (distance > 10) {
+                          extraCost = 20;
+                        } else if (distance > 7) {
+                          extraCost = 15;
+                        } else {
+                          extraCost = 10;
+                        }
+
+                        resultDiv.style.background = "rgba(239, 68, 68, 0.2)";
+                        resultDiv.style.border =
+                          "2px solid rgba(239, 68, 68, 0.5)";
+                        resultDiv.innerHTML = `
+                          <strong style="color: #ff9999;">ℹ️ Außerhalb der Hauptzone</strong><br>
+                          <p style="margin: 0.5em 0;">Dein Standort liegt außerhalb unserer Standard-Zone.</p>
+                          <p style="margin: 0.5em 0; font-size: 0.9em;">📍 Entfernung zur Schule: ca. ${distance.toFixed(
+                            1
+                          )} km</p>
+                          <p style="margin: 0.5em 0 0 0; color: rgba(255,255,255,0.9);">
+                            → <strong>Geschätzte Extrakosten: +${extraCost}€</strong> pro Unterrichtseinheit<br>
+                            <small style="color: rgba(255,255,255,0.7);">Kontaktiere uns für ein genaues Angebot!</small>
+                          </p>
+                        `;
+                      }
+
+                      locationMarker.bindPopup(address).openPopup();
+                    } catch (error) {
+                      resultDiv.style.background = "rgba(239, 68, 68, 0.2)";
+                      resultDiv.style.border =
+                        "2px solid rgba(239, 68, 68, 0.5)";
+                      resultDiv.innerHTML =
+                        "❌ Fehler beim Ermitteln der Adresse. Bitte versuche es erneut.";
+                    }
+                  },
+                  function (error) {
+                    // Geolocation error handling
+                    resultDiv.style.background = "rgba(239, 68, 68, 0.2)";
+                    resultDiv.style.border = "2px solid rgba(239, 68, 68, 0.5)";
+
+                    let errorMessage = "❌ ";
+                    switch (error.code) {
+                      case error.PERMISSION_DENIED:
+                        errorMessage +=
+                          "Standortzugriff verweigert. Bitte erlaube den Zugriff in deinen Browser-Einstellungen.";
+                        break;
+                      case error.POSITION_UNAVAILABLE:
+                        errorMessage +=
+                          "Standort konnte nicht ermittelt werden.";
+                        break;
+                      case error.TIMEOUT:
+                        errorMessage +=
+                          "Zeitüberschreitung bei der Standortermittlung.";
+                        break;
+                      default:
+                        errorMessage += "Fehler beim Ermitteln des Standorts.";
+                    }
+
+                    resultDiv.innerHTML = errorMessage;
+                  },
+                  {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0,
+                  }
+                );
+              };
+
+              // Helper function to check if point is in polygon
+              function isPointInPolygon(point, polygon) {
+                const x = point[0],
+                  y = point[1];
+                let inside = false;
+                for (
+                  let i = 0, j = polygon.length - 1;
+                  i < polygon.length;
+                  j = i++
+                ) {
+                  const xi = polygon[i][0],
+                    yi = polygon[i][1];
+                  const xj = polygon[j][0],
+                    yj = polygon[j][1];
+                  const intersect =
+                    yi > y !== yj > y &&
+                    x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+                  if (intersect) inside = !inside;
+                }
+                return inside;
+              }
+
+              // Helper function to calculate distance in km
+              function calculateDistance(lat1, lon1, lat2, lon2) {
+                const R = 6371; // Earth's radius in km
+                const dLat = ((lat2 - lat1) * Math.PI) / 180;
+                const dLon = ((lon2 - lon1) * Math.PI) / 180;
+                const a =
+                  Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos((lat1 * Math.PI) / 180) *
+                    Math.cos((lat2 * Math.PI) / 180) *
+                    Math.sin(dLon / 2) *
+                    Math.sin(dLon / 2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                return R * c;
+              }
+            </script>
+
+            <div class="row" style="margin-top: 2em">
+              <div class="col-6 col-12-small">
+                <div class="info-box">
+                  <h3 style="color: #3b82f6; margin-top: 0">🎵 Heimservice</h3>
+                  <p style="margin-bottom: 0.5em">
+                    <strong>Hauptservice-Gebiete (Blaue Zone):</strong>
+                  </p>
+                  <ul
+                    style="
+                      margin: 0;
+                      padding-left: 1.5em;
+                      color: rgba(255, 255, 255, 0.7);
+                    "
+                  >
+                    <li>Innenstadt-West</li>
+                    <li>Südstadt & Südweststadt</li>
+                    <li>Weststadt & Oststadt</li>
+                    <li>Mühlburg & Beiertheim-Bulach</li>
+                    <li>Rintheim & Waldstadt</li>
+                    <li>Durlach</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-12-small">
+                <div class="info-box" style="border-left-color: #ef4444">
+                  <h3 style="color: #ef4444; margin-top: 0">
+                    🏠 Heimservice + Extrakosten
+                  </h3>
+                  <p style="margin-bottom: 0.5em">
+                    <strong>Außenbezirke (Rote Zone):</strong>
+                  </p>
+                  <ul
+                    style="
+                      margin: 0;
+                      padding-left: 1.5em;
+                      color: rgba(255, 255, 255, 0.7);
+                    "
+                  >
+                    <li>Innenstadt-Ost, Nordstadt</li>
+                    <li>Nordweststadt, Grünwinkel</li>
+                    <li>Oberreut, Weiherfeld-Dammerstock</li>
+                    <li>Rüppurr, Daxlanden, Knielingen</li>
+                    <li>Neureut, Hagsfeld, Grötzingen</li>
+                    <li>Stupferich, Hohenwettersbach</li>
+                    <li>Grünwettersbach, Palmbach</li>
+                    <li>Wolfartsweier</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <header class="major" style="margin-top: 3em">
+              <h2>Bereit durchzustarten?</h2>
+            </header>
+            <p>
+              Bei Fragen oder zur Vereinbarung einer kostenlosen Probestunde
+              sende uns gerne eine Nachricht!
+            </p>
+            <ul class="actions">
+              <li>
+                <a href="kontakt.html" class="button primary"
+                  >Jetzt Kontakt aufnehmen</a
+                >
+              </li>
+              <li>
+                <a href="instrumente.html" class="button"
+                  >Instrumente ansehen</a
+                >
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <footer id="footer">
+        <div class="inner">
+          <ul class="icons">
+            <li>
+              <a href="#" class="icon brands alt fa-twitter"
+                ><span class="label">Twitter</span></a
+              >
+            </li>
+            <li>
+              <a href="#" class="icon brands alt fa-facebook-f"
+                ><span class="label">Facebook</span></a
+              >
+            </li>
+            <li>
+              <a href="#" class="icon brands alt fa-instagram"
+                ><span class="label">Instagram</span></a
+              >
+            </li>
+          </ul>
+          <ul class="copyright">
+            <li>&copy; Kleine Musikschule Karlsruhe</li>
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
