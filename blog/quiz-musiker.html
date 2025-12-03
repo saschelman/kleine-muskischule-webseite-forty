@@ -14,6 +14,31 @@
       name="description"
       content="Starte mit deiner Instrumentenwahl und beantworte 9 Charakterfragen: Finde heraus, was für ein Musiker du gerne wärst – vom Jazz‑Gitarren‑Virtuosen bis zur Bass‑Slap‑Legende."
     />
+    <meta
+      name="keywords"
+      content="Musiker Quiz, Instrument Quiz, welches Instrument, Musikpersönlichkeit, Musikschule Karlsruhe"
+    />
+    <link
+      rel="canonical"
+      href="https://www.kleine-muskischule.de/blog/quiz-musiker.html"
+    />
+    <meta
+      property="og:title"
+      content="Was für ein Musiker wäre ich gerne? – Quiz"
+    />
+    <meta
+      property="og:description"
+      content="Finde heraus, was für ein Musiker du gerne wärst! Vom Jazz-Virtuosen bis zur Bass-Legende."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://www.kleine-muskischule.de/blog/quiz-musiker.html"
+    />
+    <meta
+      property="og:image"
+      content="https://www.kleine-muskischule.de/images/logo_small.png"
+    />
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -383,6 +408,92 @@
       .back-btn:hover {
         transform: translateY(-2px);
         background: rgba(255, 255, 255, 0.95);
+      }
+
+      /* Responsive Improvements */
+      @media screen and (max-width: 980px) {
+        .btn-start {
+          padding: 1.1rem 2.2rem;
+          font-size: 1.3rem;
+        }
+
+        .question-text {
+          font-size: 1.6rem;
+        }
+
+        .answers-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .answer-btn {
+          min-height: 64px;
+          padding: 1rem 1.25rem;
+          font-size: 1.05rem;
+        }
+      }
+
+      @media screen and (max-width: 736px) {
+        .quiz-container {
+          padding: 1.5rem;
+        }
+
+        .btn-start {
+          padding: 1rem 2rem;
+          font-size: 1.2rem;
+          width: 100%;
+        }
+
+        .question-text {
+          font-size: 1.4rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .question-number {
+          font-size: 1.1rem;
+        }
+
+        .answer-btn {
+          min-height: 60px;
+          padding: 0.9rem 1rem;
+          font-size: 1rem;
+        }
+
+        .btn-secondary {
+          padding: 0.9rem 1.75rem;
+          font-size: 1rem;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .quiz-container {
+          padding: 1rem;
+        }
+
+        .btn-start {
+          padding: 0.9rem 1.5rem;
+          font-size: 1.1rem;
+        }
+
+        .question-text {
+          font-size: 1.25rem;
+        }
+
+        .answer-btn {
+          min-height: 56px;
+          padding: 0.8rem 0.9rem;
+          font-size: 0.95rem;
+        }
+
+        .btn-secondary {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.95rem;
+        }
+
+        .back-btn {
+          padding: 0.25rem 0.6rem;
+          font-size: 0.75rem;
+        }
       }
     </style>
   </head>

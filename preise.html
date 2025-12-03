@@ -2,6 +2,32 @@
 <html>
   <head>
     <title>Preise - Kleine Musikschule Karlsruhe</title>
+    <meta
+      name="description"
+      content="Transparente Preise für Musikunterricht in Karlsruhe. Flexible Optionen für Gitarre, Klavier, Schlagzeug, Ukulele und E-Bass. Jetzt kostenlose Probestunde buchen!"
+    />
+    <meta
+      name="keywords"
+      content="Preise, Musikschule Karlsruhe, Musikunterricht Kosten, Gitarrenunterricht Preise, Klavierunterricht Preise"
+    />
+    <link
+      rel="canonical"
+      href="https://www.kleine-muskischule.de/preise.html"
+    />
+    <meta property="og:title" content="Preise - Kleine Musikschule Karlsruhe" />
+    <meta
+      property="og:description"
+      content="Faire und transparente Preise für professionellen Musikunterricht in Karlsruhe."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.kleine-muskischule.de/preise.html"
+    />
+    <meta
+      property="og:image"
+      content="https://www.kleine-muskischule.de/images/logo_small.png"
+    />
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -211,6 +237,37 @@
         background: rgba(239, 68, 68, 0.5);
       }
 
+      .location-check-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 1em 2.5em;
+        font-size: 1.1em;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      .location-check-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      }
+
+      .location-check-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.5);
+      }
+
       @media screen and (max-width: 736px) {
         .pricing-container {
           grid-template-columns: 1fr;
@@ -223,6 +280,19 @@
 
         .pricing-card {
           padding: 1.5em;
+        }
+
+        .location-check-btn {
+          padding: 0.9em 1.8em;
+          font-size: 1em;
+          width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .location-check-btn {
+          padding: 0.8em 1.5em;
+          font-size: 0.95em;
         }
       }
     </style>
@@ -249,7 +319,7 @@
         </ul>
       </nav>
 
-      <section id="banner" class="style2">
+      <section id="banner" class="style4">
         <div class="inner">
           <span class="image">
             <img src="images/preise.jpg" alt="Preise" />
@@ -457,33 +527,9 @@
                     flex-wrap: wrap;
                     justify-content: center;
                   "
+                  class="location-btn-container"
                 >
-                  <button
-                    onclick="checkLocation()"
-                    style="
-                      background: linear-gradient(
-                        135deg,
-                        #667eea 0%,
-                        #764ba2 100%
-                      );
-                      color: white;
-                      border: none;
-                      padding: 1em 2.5em;
-                      font-size: 1.1em;
-                      font-weight: 600;
-                      border-radius: 50px;
-                      cursor: pointer;
-                      transition: all 0.3s ease;
-                      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-                      display: inline-flex;
-                      align-items: center;
-                      gap: 0.5em;
-                    "
-                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'; this.style.background='linear-gradient(135deg, #764ba2 0%, #667eea 100%)'"
-                    onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'; this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'"
-                    onmousedown="this.style.transform='translateY(0)'; this.style.boxShadow='0 3px 10px rgba(102, 126, 234, 0.5)'"
-                    onmouseup="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
-                  >
+                  <button onclick="checkLocation()" class="location-check-btn">
                     <span style="font-size: 1.2em">📍</span>
                     Meinen Standort prüfen
                   </button>
