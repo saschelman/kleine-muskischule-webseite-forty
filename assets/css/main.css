@@ -1,9 +1,6 @@
 /* Breadcrumbs */
 .breadcrumbs {
-  font-size: 1em;
-  margin: 1em 0 2em 0;
-  padding-left: 1em;
-  color: #888;
+  display: none !important;
 }
 .breadcrumbs a {
   color: #667eea;
