@@ -67,7 +67,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <meta name="theme-color" content="#9bf1ff" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="assets/css/main.min.css" />
     <noscript
       ><link rel="stylesheet" href="assets/css/noscript.css"
     /></noscript>
@@ -136,27 +138,45 @@
         <!-- One -->
         <section id="one" class="tiles">
           <article>
-            <video class="tile-video" muted loop playsinline>
+            <video
+              class="tile-video"
+              muted
+              loop
+              playsinline
+              aria-label="Über uns – Vorstellungsvideo der Musikschule"
+            >
               <source src="vids/überuns.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3>
                 <a href="überuns.html" class="link">Über uns</a>
               </h3>
-              <p>Da sind wir!</p>
+              <p>Lerne unser engagiertes Team kennen!</p>
             </header>
           </article>
           <article>
-            <video class="tile-video" muted loop playsinline>
+            <video
+              class="tile-video"
+              muted
+              loop
+              playsinline
+              aria-label="Lehre – So unterrichten wir"
+            >
               <source src="vids/lehre.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3><a href="lehre.html" class="link">Lehre</a></h3>
-              <p>So machen wir das!</p>
+              <p>Unsere moderne, motivierende Lehrweise.</p>
             </header>
           </article>
           <article>
-            <video class="tile-video" muted loop playsinline>
+            <video
+              class="tile-video"
+              muted
+              loop
+              playsinline
+              aria-label="Instrumente – Unser Angebot"
+            >
               <source
                 src="vids/instrummente.mp4"
                 type="video/mp4"
@@ -167,36 +187,54 @@
               <h3>
                 <a href="instrumente.html" class="link">Instrumente</a>
               </h3>
-              <p>Das gibts bei uns!</p>
+              <p>Alle Instrumente, die du bei uns lernen kannst.</p>
             </header>
           </article>
           <article>
-            <video class="tile-video" muted loop playsinline>
+            <video
+              class="tile-video"
+              muted
+              loop
+              playsinline
+              aria-label="Preise – Unsere Tarife"
+            >
               <source src="vids/prices.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3><a href="preise.html" class="link">Preise</a></h3>
-              <p>Faire Preise für alle!</p>
+              <p>Transparente und faire Preise für alle.</p>
             </header>
           </article>
           <article>
-            <video class="tile-video" muted loop playsinline>
+            <video
+              class="tile-video"
+              muted
+              loop
+              playsinline
+              aria-label="FAQ – Häufige Fragen"
+            >
               <source src="vids/faq.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3><a href="faq.html" class="link">FAQ</a></h3>
-              <p>für Große und kleinen Fragen!</p>
+              <p>Antworten auf alle wichtigen Fragen.</p>
             </header>
           </article>
           <article>
-            <video class="tile-video" muted loop playsinline>
+            <video
+              class="tile-video"
+              muted
+              loop
+              playsinline
+              aria-label="Kontakt – Jetzt anfragen"
+            >
               <source src="vids/kontakt.mp4" type="video/mp4" loading="lazy" />
             </video>
             <header class="major">
               <h3>
                 <a href="kontakt.html" class="link">Kontakt</a>
               </h3>
-              <p>Melde dich noch heute!</p>
+              <p>Jetzt Kontakt aufnehmen und kostenlose Probestunde sichern!</p>
             </header>
           </article>
         </section>
@@ -208,13 +246,10 @@
               <h2>10 Tipps zum Dranbleiben</h2>
             </header>
             <p>
-              Du hast voller Motivation mit dem Musiklernen angefangen, aber
-              nach ein paar Wochen lässt die Begeisterung nach? Das ist völlig
-              normal! Musiklernen ist ein Marathon, kein Sprint. Mit unseren
-              zehn bewährten Strategien bleibst du langfristig motiviert,
-              überwindest Plateaus und erreichst deine musikalischen Ziele. Von
-              der richtigen Übungsroutine bis zu mentalen Tricks – entdecke, wie
-              du dauerhaft am Ball bleibst und Spaß an der Musik behältst!
+              Motivationstief? Mit unseren 10 erprobten Tipps bleibst du beim
+              Musiklernen am Ball! Erfahre, wie du mit cleveren Routinen,
+              kleinen Zielen und Spaß langfristig motiviert bleibst und deine
+              musikalischen Träume verwirklichst.
             </p>
             <ul class="actions">
               <li>
@@ -231,10 +266,10 @@
               <h2>Welcher Typ von Musiker bin ich? – Quiz</h2>
             </header>
             <p>
-              Finde heraus, welcher Musiker-Typ du bist! Beantworte kurze Fragen
-              über deine Persönlichkeit und musikalischen Vorlieben und
-              entdecke, ob du ein kreativer Improvisator, strukturierter
-              Perfektionist oder vielleicht ein vielseitiger Allrounder bist.
+              Welcher Musiker-Typ bist du? Mach unser Quiz und finde heraus, ob
+              du ein kreativer Improvisator, strukturierter Perfektionist oder
+              vielseitiger Allrounder bist – und erhalte Tipps, die zu deinem
+              Stil passen!
             </p>
             <ul class="actions">
               <li>
@@ -261,6 +296,9 @@
       <!-- Footer -->
       <footer id="footer">
         <div class="inner">
+          <nav class="breadcrumbs-footer" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+          </nav>
           <ul class="icons">
             <li>
               <a href="#" class="icon brands alt fa-twitter"
@@ -289,7 +327,7 @@
             </li>
           </ul>
           <ul class="copyright">
-            <li>&copy; Untitled</li>
+            <li>&copy; Kleine Musikschule Karlsruhe</li>
             <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
           </ul>
         </div>
@@ -304,6 +342,7 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cookie-consent.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -322,6 +361,18 @@
             });
           }
         });
+
+        // Register service worker for PWA
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("Service Worker registered:", registration);
+            })
+            .catch((error) => {
+              console.log("Service Worker registration failed:", error);
+            });
+        }
       });
     </script>
 

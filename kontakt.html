@@ -77,7 +77,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <meta name="theme-color" content="#9bf1ff" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="assets/css/main.min.css" />
     <noscript
       ><link rel="stylesheet" href="assets/css/noscript.css"
     /></noscript>
@@ -90,7 +92,7 @@
         <a href="index.html" class="logo"
           ><img
             src="images/logo_small.png"
-            alt="Logo"
+            alt="Logo der kleinen Musikschule Karlsruhe"
             class="logo-img"
             loading="lazy"
           />
@@ -118,13 +120,19 @@
       <section id="banner" class="style6">
         <div class="inner">
           <span class="image">
-            <img src="images/kontakt.jpg" alt="Kontakt" loading="lazy" />
+            <img
+              src="images/kontakt.jpg"
+              alt="Kontaktformular der kleinen Musikschule Karlsruhe"
+              loading="lazy"
+            />
           </span>
           <header class="major">
             <h1>Kontakt</h1>
           </header>
           <div class="content">
-            <p>Melde dich noch heute bei uns!</p>
+            <p>
+              Melde dich jetzt und sichere dir deine kostenlose Probestunde!
+            </p>
           </div>
         </div>
       </section>
@@ -290,6 +298,9 @@
       <!-- Footer -->
       <footer id="footer">
         <div class="inner">
+          <nav class="breadcrumbs-footer" aria-label="Breadcrumb">
+            <a href="index.html">Home</a> &gt; <span>Kontakt</span>
+          </nav>
           <ul class="icons">
             <li>
               <a href="#" class="icon brands alt fa-twitter"
@@ -333,6 +344,7 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cookie-consent.js"></script>
 
     <script>
       // Handle form submission

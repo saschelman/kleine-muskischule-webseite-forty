@@ -17,6 +17,48 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
 
+/* Blog image sizing: keep images visually balanced */
+.post img,
+.post .image img,
+.blog-post img,
+.blog-post .image img {
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5em auto;
+}
+
+/* Hide breadcrumbs on blog posts */
+.blog-post .breadcrumbs {
+  display: none !important;
+}
+
+/* Footer breadcrumbs styling */
+.breadcrumbs-footer {
+  text-align: center;
+  padding: 1em 0;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(212, 212, 255, 0.1);
+  margin-top: 2em;
+}
+
+.breadcrumbs-footer a {
+  color: rgba(155, 241, 255, 0.8);
+  border-bottom: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs-footer a:hover {
+  color: #9bf1ff;
+}
+
+.breadcrumbs-footer span {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
 /*
 	Forty by HTML5 UP
 	html5up.net | @ajlkn

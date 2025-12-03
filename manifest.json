@@ -1,0 +1,27 @@
+{
+  "name": "Kleine Musikschule Karlsruhe",
+  "short_name": "Musikschule KA",
+  "description": "Professioneller Musikunterricht für Gitarre, Klavier, Schlagzeug, Ukulele und E-Bass in Karlsruhe. Für Kinder, Jugendliche und Erwachsene.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#242943",
+  "theme_color": "#9bf1ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/logo_small.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo_small.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "music"],
+  "lang": "de-DE",
+  "dir": "ltr"
+}
