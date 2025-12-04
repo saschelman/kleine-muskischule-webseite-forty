@@ -1,72 +1,143 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.kleine-muskischule.de/</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/faq.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/instrumente.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/kontakt.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/lehre.html</loc>
-  <url>
-    <loc>https://www.kleine-muskischule.de/%C3%BCberuns.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/10-tipps-zum-dranbleiben.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/preise.html</loc>
-  </url>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/e-drums-vs-akustik.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/erste-akkorde-gitarre.html</loc>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/musiktheorie-grundlagen.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/fehler-gitarre-lernen.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/klavier-oder-keyboard.html</loc>
-  </url>
-    <url>
-      <loc>https://www.kleine-muskischule.de/instrumente/schlagzeug/index.html</loc>
-    </url>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/musik-im-alter-lernen.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/quiz-musiker.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/blog/ueben-mit-metronom.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/instrumente/bass/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/instrumente/gitarre/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/instrumente/klavier/index.html</loc>
-  </url>
-  <url>
-    <loc>https://www.kleine-muskischule.de/instrumente/ukulele/index.html</loc>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
+<url>
+<loc>https://kleine-musikschule.de/</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/index.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/%C3%BCberuns.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/lehre.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/preise.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/faq.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/kontakt.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/10-tipps-zum-dranbleiben.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/quiz-musiker.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/gitarre/</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/gitarre/index.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/ukulele/</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/ukulele/index.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/schlagzeug/</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/schlagzeug/index.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/bass/</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/bass/index.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/klavier/</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/instrumente/klavier/index.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/ueben-mit-metronom.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/erste-akkorde-gitarre.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/e-drums-vs-akustik.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/musik-im-alter-lernen.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/musiktheorie-grundlagen.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/fehler-gitarre-lernen.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
+<url>
+<loc>https://kleine-musikschule.de/blog/klavier-oder-keyboard.html</loc>
+<lastmod>2025-12-03T21:45:05+00:00</lastmod>
+<priority>0.64</priority>
+</url>
 </urlset>
